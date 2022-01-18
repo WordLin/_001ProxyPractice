@@ -1,0 +1,8 @@
+com\example\dao\StudentDao.class
+com\example\service\Services.class
+com\example\util\ServiceFactory.class
+com\example\test\Test1.class
+com\example\service\impl\ServicesImpl.class
+com\example\util\MyInvocationHandler.class
+com\example\util\SqlSessionUtil.class
+com\example\domain\Student.class

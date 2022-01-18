@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.StudentDao">
+    <select id="queryStu" resultType="com.example.domain.Student">
+        select id, name, age
+        from student
+    </select>
+
+    <select id="queryStu1" resultType="com.example.domain.Student">
+        select id, name, age
+        from student
+        where id = #{id}
+    </select>
+
+    <select id="queryStu2" resultType="com.example.domain.Student">
+        select id, name, age
+        from student
+        where name like '%' #{name} '%'
+    </select>
+
+    <insert id="insertStu">
+        insert into student(name, age)
+        values (#{name}, #{age})
+    </insert>
+
+    <select id="queryStu3" resultType="map">
+        select age, count(*) as count
+        from student
+        group by age
+    </select>
+
+    <select id="queryStu4" resultType="map">
+        select s.name,a.info from student s join ageinfo a on s.age = a.age
+    </select>
+
+    <select id="queryStu5" resultType="STUDENT">
+        select * from student
+            <where>
+        <if test="name!=null and name!=''">
+            name = #{name}
+        </if>
+        <if test="age!=null and age>0">
+            and age = #{age}
+        </if>
+            </where>
+    </select>
+
+    <select id="queryStu6" resultType="Student">
+        select id,name,age from student where id in
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+</mapper>
